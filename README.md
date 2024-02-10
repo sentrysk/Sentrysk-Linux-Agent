@@ -1,9 +1,27 @@
-# SysAgent
-SysAgent
+# Linux System Agent
 
-With this agents you can collect information about installed apps, pip packages, npm packages, docker container and images
+## Provides
+- System Info
+- Users Info
+- Services
+- Installed Apps
+- NPM Info
+- Pip Info
+- Docker Info
 
-## Agent Types
-* ![Windows](/Windows)
-* ![Linux](/Linux)
-* ![MacOs](/MacOs)
+## How It Works
+
+### Services
+```
+wmic service get DisplayName,Name,State,Description /format:csv
+```
+code runs and returns
+
+```
+{
+    "DisplayName":"",
+    "ServiceName":"",
+    "Status":"",
+    "Description"
+}
+```
