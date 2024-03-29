@@ -151,6 +151,29 @@ def send_last_logons():
     except Exception as e:
         print(e)
 
+# Npm Packages Info Sender Function
+def send_npm_packages():
+    try:
+        url = str(base_url) + endpoints["npm_pkgs"]
+
+        npm_pkgs_info = get_npm_packages()
+
+        payload = json.dumps({
+            "is_installed": npm_pkgs_info["is_installed"],
+            "npm_packages": npm_pkgs_info["packages"]
+        })
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 ##############################################################################
 
 # Schedule jobs
