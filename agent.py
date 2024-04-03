@@ -151,6 +151,29 @@ def send_last_logons():
     except Exception as e:
         print(e)
 
+# Pip Packages Info Sender Function
+def send_pip_packages():
+    try:
+        url = str(base_url) + endpoints["pip_pkgs"]
+
+        pip_info = get_pip_packages()
+
+        payload = json.dumps({
+            "is_installed": pip_info["is_installed"],
+            "pip_packages": pip_info["packages"]
+        })
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 # Npm Packages Info Sender Function
 def send_npm_packages():
     try:
