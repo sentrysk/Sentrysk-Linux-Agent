@@ -197,6 +197,26 @@ def send_npm_packages():
     except Exception as e:
         print(e)
 
+# Docker Info Sender Function
+def send_docker_info():
+    try:
+        url = str(base_url) + endpoints["docker_info"]
+
+        docker_info = get_docker_info()
+
+        payload = json.dumps(docker_info)
+
+        headers = {
+            'Authorization': agent_token,
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+
+        print(response.text)
+    except Exception as e:
+        print(e)
+
 ##############################################################################
 
 # Schedule jobs
