@@ -51,10 +51,10 @@ def get_system_info():
         if not partition.device.startswith('/dev/loop'):
             partition_info = psutil.disk_usage(partition.mountpoint)
             disk_info[partition.device] = {
-                "total": convert_size(partition_info.total),
-                "used": convert_size(partition_info.used),
-                "free": convert_size(partition_info.free),
-                "percent": partition_info.percent,
+                'device': partition.device,
+                'mountpoint': partition.mountpoint,
+                'filesystem': partition.fstype,
+                'total_size': convert_size(partition_info.total)
             }
     system_info["disks"] = disk_info
 
