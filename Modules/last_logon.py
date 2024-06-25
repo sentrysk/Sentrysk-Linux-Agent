@@ -5,6 +5,7 @@
 import subprocess
 import re
 from datetime import datetime
+import pytz
 ##############################################################################
 
 # Global Values
@@ -37,8 +38,10 @@ def get_last_logons():
             match = re.search(TM_RE, line)
             if match:
                 last_logon = match.group(0)
+                # Convert date string to date format
                 last_logon = datetime.strptime(last_logon, NIX_DF)
-
+                # Convert date to UTC timezone
+                last_logon = last_logon.astimezone(pytz.utc) 
                 
                 last_logons.append({
                     "username": user,
