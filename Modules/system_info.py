@@ -38,9 +38,7 @@ def get_system_info():
     # Memory information
     virtual_memory = psutil.virtual_memory()
     memory_info = {
-        "total_memory": convert_size(virtual_memory.total),
-        "available_memory": convert_size(virtual_memory.available),
-        "memory_percent": virtual_memory.percent,
+        "total_memory": convert_size(virtual_memory.total)
     }
     system_info["memory"] = memory_info
 
